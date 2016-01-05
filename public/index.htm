@@ -1,0 +1,119 @@
+<head>
+  <link href="//vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet">
+  <link href="//cdn.rawgit.com/kmoskwiak/videojs-resolution-switcher/master/lib/videojs-resolution-switcher.css" rel="stylesheet">
+  <link href="//cdn.rawgit.com/mmcc/videojs-skin-twitchy/v1.0.0/dist/videojs-skin-twitchy.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/yt-player.css">
+  <link href="../node_modules/videojs-playlist-ui/dist/videojs-playlist-ui.vertical.css" rel="stylesheet">
+  <!-- If you'd like to support IE8 -->
+  <script src="//vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script>
+</head>
+
+<body>
+  <ol class="vjs-playlist"></ol>
+  <!--<video id="my-video" class="video-js  vjs-skin-twitchy" controls preload="auto" width="98%" height="98%"-->
+  <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="98%" height="98%"
+  poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+    <!--<source src="MY_VIDEO.webm" type='video/webm'>-->
+    <source src="vids/Intro.mp4" type='video/mp4'>
+    <source src="rtmp://your.streaming.provider.net/cfx/st/" type="rtmp/mp4">
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+  </video>
+  <style>
+    /* Show the controls (hidden at the start by default) */
+    .video-js .vjs-control-bar { display: block; }
+
+      /* Make the CDN fonts accessible from the CSS */
+    @font-face {
+      font-family: 'VideoJS';
+      src: url('//vjs.zencdn.net/f/1/vjs.eot');
+      src: url('//vjs.zencdn.net/f/1/vjs.eot?#iefix') format('embedded-opentype'),
+        url('//vjs.zencdn.net/f/1/vjs.woff') format('woff'),
+        url('//vjs.zencdn.net/f/1/vjs.ttf') format('truetype');
+    }
+
+    /* Make the demo a little prettier */
+    body { background: #222; text-align: center; }
+    .video-js { margin: 20px auto; }
+
+  </style>
+  <script src="http://vjs.zencdn.net/5.4.4/video.js"></script>
+  <script src="node_modules/videojs-playlist/dist/videojs-playlist.min.js"></script>
+  <script src="node_modules/videojs-playlist-ui/dist/videojs-playlist-ui.js"></script>
+  <script src="https://cdn.rawgit.com/kmoskwiak/videojs-resolution-switcher/master/lib/videojs-resolution-switcher.js"></script>
+  <script>
+    videojs('my-video', {
+        controls: true,
+        nativeControlsForTouch: false,
+        width: 1000,
+        height: 600,
+        plugins: {
+          ass: {
+            'src': ["subs/os.ass"]
+          },
+          videoJsResolutionSwitcher: {
+            default: 'low', // Default resolution [{Number}, 'low', 'high'],
+            dynamicLabel: true // Display dynamic labels or gear symbol
+          }
+        },
+        playbackRates: [0.5, 1, 1.5, 2]
+      }, function(){
+        var player = this;
+        window.player = player
+        // Add dynamically sources via updateSrc method
+        player.updateSrc([
+          {
+            src: 'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
+            type: 'video/webm',
+            label: '360'
+          },
+          {
+            src: 'https://vjs.zencdn.net/v/oceans.mp4?hd',
+            type: 'video/mp4',
+            label: '720'
+          }
+        ])
+
+        player.on('resolutionchange', function(){
+          console.info('Source changed to %s', player.src())
+        })
+
+      }).playlist([{
+        sources: [{
+          src: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
+          type: 'video/mp4'
+        }],
+        poster: 'http://media.w3.org/2010/05/sintel/poster.png'
+      }, {
+        sources: [{
+          src: 'http://media.w3.org/2010/05/bunny/trailer.mp4',
+          type: 'video/mp4'
+        }],
+        poster: 'http://media.w3.org/2010/05/bunny/poster.png'
+      }, {
+        sources: [{
+          src: 'http://vjs.zencdn.net/v/oceans.mp4',
+          type: 'video/mp4'
+        }],
+        poster: 'http://www.videojs.com/img/poster.jpg'
+      }, {
+        sources: [{
+          src: 'http://media.w3.org/2010/05/bunny/movie.mp4',
+          type: 'video/mp4'
+        }],
+        poster: 'http://media.w3.org/2010/05/bunny/poster.png'
+      }, {
+        sources: [{
+          src: 'http://media.w3.org/2010/05/video/movie_300.mp4',
+          type: 'video/mp4'
+        }],
+        poster: 'http://media.w3.org/2010/05/video/poster.png'
+      }]);
+
+      videojs('my-video').playlist.autoadvance(0);
+      videojs('my-video').videoJsResolutionSwitcher();
+      videojs('my-video').playlistUi();
+    </script>
+</body>

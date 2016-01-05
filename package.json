@@ -1,0 +1,29 @@
+{
+  "name": "local-stream-gui",
+  "version": "0.0.1b",
+  "description": "An Streaming Web Gui",
+  "author": "Marcel Radzio <info@nordgedanken.de>",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [
+    ""
+  ],
+  "dependencies": {
+    "express": "^4.13.3",
+    "videojs-ass": "^0.5.0",
+    "videojs-playlist": "^2.1.0",
+    "videojs-playlist-ui": "^2.0.0"
+  },
+  "preferGlobal": false,
+  "private": false,
+  "publishConfig": {},
+  "license": "SEE LICENSE IN LICENSE.md"
+}

@@ -17,7 +17,7 @@
     ""
   ],
   "dependencies": {
-    "express": "^4.13.4",
+    "express": "^4.14.0",
     "videojs-ass": "^0.6.0",
     "videojs-playlist": "^2.4.1",
     "videojs-playlist-ui": "^2.2.0"

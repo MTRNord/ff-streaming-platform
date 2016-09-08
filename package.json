@@ -20,7 +20,7 @@
     "express": "^4.14.0",
     "videojs-ass": "^0.6.1",
     "videojs-playlist": "^2.4.1",
-    "videojs-playlist-ui": "^2.3.0"
+    "videojs-playlist-ui": "^3.0.0"
   },
   "preferGlobal": false,
   "private": false,
